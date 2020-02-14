@@ -2,10 +2,10 @@ package au.com.ourveryown.ovoandroidhomeworktask.Model
 
 import java.io.Serializable
 
-data class JobModel (
+data class JobModel(
 
-    var jobs:List<JobListModel>,
-    var nextPage:Int
+    var jobs: List<JobListModel>,
+    var nextPage: Double
 
-):Serializable
+) : Serializable
 

@@ -7,9 +7,8 @@ import androidx.annotation.NonNull
 import androidx.lifecycle.ViewModel
 import android.icu.lang.UCharacter.GraphemeClusterBreak.T
 
-
-
-class SavedJobViewModelFactory(application: Context) : ViewModelProvider.Factory{
+// factory to pass parameter to viewModelProviders
+class SavedJobViewModelFactory(application: Context) : ViewModelProvider.Factory {
 
     private lateinit var mApplication: Context
 

@@ -8,44 +8,40 @@ import au.com.ourveryown.ovoandroidhomeworktask.Model.JobListModel
 import au.com.ourveryown.ovoandroidhomeworktask.Model.JobModel
 import au.com.ourveryown.ovoandroidhomeworktask.SavedJobsClient
 
-class SavedJobVM(context: Context): ViewModel() {
-    var listOfSavedJobs = MutableLiveData< List<JobListModel>>()
+class SavedJobVM(context: Context) : ViewModel() {
+    var listOfSavedJobs = MutableLiveData<ArrayList<JobListModel>>()    // for Jobs
+    var nextPageLivedata = MutableLiveData<Double>()                    //for nextpage
     lateinit var context: Context
-    lateinit var repository:SavedJobsClient
+    lateinit var repository: SavedJobsClient
 
 
-    init{
+    init {
         this.context = context
-        listOfSavedJobs.value = listOf()
+        listOfSavedJobs.value = arrayListOf()
         repository = SavedJobsClient(context)
 
     }
 
-    init {
-        listOfSavedJobs.value = listOf()
-    }
 
+    fun getMutableSavedJobs(page: Int?) {
 
-
-    fun getMutableSavedJobs(){
-
-        repository.getSavedJobs(1,::completion)
+        repository.getSavedJobs(page, ::completion)         //assetCall
 
     }
 
-    fun completion (savedJobs:Map<String, Any>?,error:Exception?){
-        Log.i("Reached",savedJobs.toString())
+    fun completion(savedJobs: Map<String, Any>?, error: Exception?) {
+
+
         var jobList = ArrayList<JobListModel>()
 
         jobList = savedJobs!!.get("jobs") as ArrayList<JobListModel>
 
-        Log.i("joblistSize",jobList.size.toString())
+        if (savedJobs!!.containsKey("nextPage")) {
+            nextPageLivedata.value = savedJobs!!.get("nextPage") as Double
+        } else {
+            nextPageLivedata.value = 3.0           //assigned a dummy val
+        }
 
-        /*var mapSavedJob: MutableMap<String,List<JobListModel>> = mutableMapOf()
-        mapSavedJob.put("jobs",savedJobs!!.get("jobs") as List<JobListModel> )
-*/
-
-        //listOfSavedJobs.value = mapSavedJob!!.get("jobs") as List<JobListModel>
 
         listOfSavedJobs.value = jobList
 

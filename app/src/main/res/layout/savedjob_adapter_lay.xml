@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+<androidx.cardview.widget.CardView
+         android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="3dp"
+        >
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="10dp">
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:id="@+id/expired_txt"
+                    android:textColor="@color/colorLocation"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:text="Expired - "
+                    android:fontFamily="sans-serif-condensed"
+                    android:visibility="gone"/>
+
+            <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:id="@+id/title_txt"
+            android:textColor="@color/colortitle"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:fontFamily="sans-serif-condensed" />
+
+        </LinearLayout>
+        <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:id="@+id/advertiser_txt"
+                android:textColor="@color/colorAdv"
+                android:textSize="15sp"
+                android:fontFamily="sans-serif-condensed"/>
+        <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:id="@+id/location_post"
+                android:textColor="@color/colorLocation"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                android:fontFamily="sans-serif-condensed"/>
+
+        <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                >
+
+            <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:id="@+id/date_lin">
+
+        <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:id="@+id/posted_date_txt"
+                android:textColor="@color/colorPosted"
+                android:textSize="15sp"
+                android:fontFamily="sans-serif-condensed"/>
+        <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:id="@+id/saved_date_txt"
+                android:textColor="@color/colorSaved"
+                android:textSize="15sp"
+                android:fontFamily="sans-serif-condensed"
+                android:textStyle="bold"/>
+
+            </LinearLayout>
+
+
+
+        <ImageView
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:src="@drawable/expiredtag"
+                android:visibility="visible"
+                android:id="@+id/expired_tag"
+                android:layout_alignParentEnd="true"
+                android:layout_alignTop="@+id/date_lin"
+                />
+
+        </RelativeLayout>
+
+
+
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>
+
+</layout>
