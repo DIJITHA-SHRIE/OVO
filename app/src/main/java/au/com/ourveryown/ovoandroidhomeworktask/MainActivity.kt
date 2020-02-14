@@ -16,9 +16,11 @@ import au.com.ourveryown.ovoandroidhomeworktask.ViewModel.SavedJobViewModelFacto
 import au.com.ourveryown.ovoandroidhomeworktask.databinding.ActivityMainBinding
 import com.google.gson.internal.LinkedTreeMap
 import androidx.recyclerview.widget.RecyclerView
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), SwipeRefreshLayout.OnRefreshListener{
+
 
     private lateinit var binding: ActivityMainBinding
 
@@ -56,14 +58,26 @@ class MainActivity : AppCompatActivity() {
         actionBar!!.setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM)
         actionBar!!.setCustomView(R.layout.custom_action_bar)
 
+        //swiperefreshDesign
+
+        binding.swipeRefresh.setOnRefreshListener(this)
+        binding.swipeRefresh.setColorSchemeResources(
+            R.color.colorPrimary,
+            android.R.color.holo_green_dark,
+            android.R.color.holo_orange_dark,
+            android.R.color.holo_blue_dark
+        )
 
 
         jobListModel = ViewModelProviders.of(this, factory).get(SavedJobVM::class.java)
 
         jobListModel.getMutableSavedJobs(page)    // viewModel Call
+        binding.swipeRefresh.isRefreshing = true
 
         jobListModel.listOfSavedJobs.observe(this, Observer(function = fun(productList: ArrayList<JobListModel>?) {
                 productList?.let {
+
+                    binding.swipeRefresh.isRefreshing = false
 
                     Log.i("ReachedActivitySize", productList.size.toString())
 
@@ -123,7 +137,19 @@ class MainActivity : AppCompatActivity() {
 
     private fun getMoreItems() {
 
+        binding.swipeRefresh.isRefreshing = true
         jobListModel.getMutableSavedJobs(page)
+
+    }
+
+    override fun onRefresh() {
+        if (!isLoadedTwice) {
+            isLoadedTwice = true
+        jobListModel.refreshUser(page)
+        }
+        else{
+            binding.swipeRefresh.isRefreshing = false
+        }
 
     }
 }

@@ -9,11 +9,16 @@
             android:layout_height="match_parent"
             tools:context=".MainActivity"
             android:background="@color/colorBack">
+        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/swipeRefresh">
 
         <androidx.recyclerview.widget.RecyclerView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/recycler_view"/>
+        </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
         <ProgressBar
                 android:layout_width="wrap_content"

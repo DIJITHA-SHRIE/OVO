@@ -48,4 +48,8 @@ class SavedJobVM(context: Context) : ViewModel() {
 
     }
 
+    fun refreshUser(page:Int) {
+        getMutableSavedJobs(page)
+    }
+
 }
